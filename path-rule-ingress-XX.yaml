@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: path-rule-ingress-xx
+  annotations:    
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  backend:
+    serviceName: nginxhello-default-xx
+    servicePort: 80
+  rules:
+  - host: path.a68cd17c70b844cd9def.northcentralus.aksapp.io
+    http:
+      paths:
+      - backend:
+          serviceName: nginxhello-blue-xx
+          servicePort: 80
+        path: /blue
+  - http:
+      paths:
+      - backend:
+          serviceName: nginxhello-red-xx
+          servicePort: 80
+        path: /red
